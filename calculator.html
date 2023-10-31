@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" type="text/css" href="calcStyle.css">
+</head>
+<body>
+    <div id="parent">
+        <h2 style="text-align: center; color: red;" >Masai Calculator 2</h2>
+    <h1 id="display"></h1>
+    <div id="num">
+    <button>0</button>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <button>5</button>
+    <button>6</button>
+    <button>7</button>
+    <button>8</button>
+    <button>9</button>
+    <button>00</button>
+    <button>.</button>
+    </div>
+    
+    <div id="operators">
+    <button>+</button>
+    <button>-</button>
+    <button>*</button>
+    <button>/</button>
+    </div>
+    <button id="result">=</button>
+    <button id="clear">C</button>
+    </div>
+    <h2>-BHUMIT JAIN</h2>
+    
+</body>
+</html>
+<script>
+    // catching the element and buttons
+    let numpad = document.querySelectorAll("#num > button");
+    let operators = document.querySelectorAll("#operators > button");
+    let head = document.querySelector("h1")
+    let equal = document.getElementById("result");
+    let AllClear = document.getElementById("clear")
+
+    // initialising 3 new variables 2 for the input numbers & 1 for operators
+    let num1 = "";
+    let num2 = "";
+    let opt = "";
+
+    // creating a function to call the calculate function when the "=" key is pressed
+    equal.addEventListener('click', function(){
+        head.innerText = calculate(num1,num2,opt);
+    })
+
+    //creating a variable with boolean value to write the second numeber also
+    let IsNum1 = true;
+
+    //running a loop on numpad and adding eventListner on the numner buttons     
+    for(let i = 0; i < numpad.length; i++){
+        numpad[i].addEventListener('click',function(){
+            if(IsNum1 == true)
+            {
+            num1 += numpad[i].innerText;
+            head.innerText = num1;
+            }
+            else
+            {
+            num2 += numpad[i].innerText;
+            head.innerText = num2;
+            }
+            
+        })
+    }
+
+    // running a loop on operators and adding eventListner on the operatos
+    for(let i = 0 ; i < operators.length; i++){
+        operators[i].addEventListener('click', function(){
+            IsNum1 = false;
+            opt = operators[i].innerText;
+        })
+    }
+
+    // creating the function to calculate the output at the end
+    function calculate(num1,num2,opt){
+        if (opt === "/" && Number(num2) === 0) 
+        {
+            return "Error: Division by zero";
+        }
+        switch (opt)
+        {
+            case "+" :
+                return Number(num1) + Number(num2);
+
+            case "-" :
+                return Number(num1) - Number(num2);
+
+            case "*" :
+                return Number(num1) * Number(num2); 
+                
+            case "/" :
+                return Number(num1) / Number(num2);
+        }
+    }
+
+    AllClear.addEventListener('click', function(){
+        num1 = "";
+        num2 = "";
+        opt = "";
+        IsNum1 = true;
+        head.innerText = "";
+    })
+
+
+</script>
