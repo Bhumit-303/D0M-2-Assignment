@@ -38,18 +38,18 @@
 </head>
 <body>
   <div id = "parent">
-    <h1>Leaderboard</h1>
+    <h1 style="background-color: yellow;">Leaderboard</h1>
 
   <div id="scoreBox">
-    <h2>Score:</h2>
+    <h2 style="background-color: red;">Score:</h2>
     <input id="scoreBox" type="text" readonly>
   </div>
 
   <div id = "minmax">
-    <h2>MIN:</h2>
+    <h2 style="background-color: green;">MIN:</h2>
     <input id="minBox" type="text" readonly>
 
-    <h2>MAX:</h2>
+    <h2 style="background-color: blue;">MAX:</h2>
     <input id="maxBox" type="text" readonly>
   </div>
 
@@ -93,7 +93,7 @@
         }
 
         currentScore = "";
-        document.getElementById("scoreBox").value = "";
+        document.getElementById("scoreBox").value = "maxScore";
       }
     }
   </script>
