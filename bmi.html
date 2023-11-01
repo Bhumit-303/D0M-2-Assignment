@@ -6,6 +6,54 @@
     <title>BMI Calculator</title>
 </head>
 <body>
+    <p style="text-align: center; color: red;">Bhumit's BMI Calculator</p>
+    <h1>Check your BMI</h1>
+    <p style="font-size: xx-large;">Enter your weight and hight below to check your BMI results</p>
     
+    <p>Enter your weight (kg/killoGrams):</p>
+    <!-- <label for="weight">Enter your weight (kg):</label> -->
+    <input type="text" id="weight" placeholder="Enter weight in kg">
+    <br>
+
+    <p>Enter your height (m/Meters):</p>
+    <!-- <label for="height">Enter your height (m):</label> -->
+    <input type="text" id="height" placeholder="Enter height in meters">
+    <br>
+    <hr>
+
+    <button style="padding: 8px;" onclick="calculateBMI()">Calculate BMI</button>
+
+    <hr>
+    <div id="result"></div>
+
+    <script>
+        function calculateBMI() {
+            let weight = document.getElementById("weight").value;
+            let height = document.getElementById("height").value;
+// here i used the !isNan inbuilt function to check that the weight and the hight entered by thew use is a number or not is it is not the number then it will return true and if its a number then it will return false
+            if (!isNaN(Number(weight)) && !isNaN(Number(height)) ){
+                let weightValue = Number(weight);
+                let heightValue = Number(height);
+                let bmi = weightValue / (heightValue * heightValue);
+                let resultElement = document.getElementById("result");
+// used here toFixed function to get the rount figure of the bmi till 2 decimal places so that the output is not too big 
+                if (bmi <= 18.4) {
+                    resultElement.innerHTML = "BMI: " + bmi.toFixed(2) + " -You are Underweight";
+                    } 
+                else if (bmi >= 18.5 && bmi <= 24.9) {
+                    resultElement.innerHTML = "BMI: " + bmi.toFixed(2) + " -You are Normal Weight";
+                    } 
+                else if (bmi >= 25 && bmi <= 29.9) {
+                    resultElement.innerHTML = "BMI: " + bmi.toFixed(2)+ " -You are Overweight";
+                    }
+                else{
+                    resultElement.innerHTML = "BMI: " + bmi.toFixed(2) + " -You are Obese";
+                    }
+            } 
+               else {
+                   alert("Please enter valid weight and height.");
+                    }   
+        }
+    </script>
 </body>
 </html>

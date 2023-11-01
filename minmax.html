@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leaderboard</title>
+  <style>
+    /* Add your CSS styles here */
+    body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    justify-content: center;
+    margin: auto;
+    /* margin-top: 10%;
+    margin-left: 40%; */
+    width: 300px;
+    background-color: beige;
+}
+   
+#parent {
+    border-radius: 10px;
+    width: 300px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+
+    #minmax{
+      justify-content: center;
+      width: 300px;
+    }
+    
+    #buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    margin-top: 15px;
+}
+  </style>
+</head>
+<body>
+  <div id = "parent">
+    <h1>Leaderboard</h1>
+
+  <div id="scoreBox">
+    <h2>Score:</h2>
+    <input id="scoreBox" type="text" readonly>
+  </div>
+
+  <div id = "minmax">
+    <h2>MIN:</h2>
+    <input id="minBox" type="text" readonly>
+
+    <h2>MAX:</h2>
+    <input id="maxBox" type="text" readonly>
+  </div>
+
+  <div id="buttons">
+    <button onclick="addToScore(1)">1</button>
+    <button onclick="addToScore(2)">2</button>
+    <button onclick="addToScore(3)">3</button>
+    <button onclick="addToScore(4)">4</button>
+    <button onclick="addToScore(5)">5</button>
+    <button onclick="addToScore(6)">6</button>
+    <button onclick="addToScore(7)">7</button>
+    <button onclick="addToScore(8)">8</button>
+    <button onclick="addToScore(9)">9</button>
+    <button onclick="addToScore(0)">0</button>
+  </div>
+
+  <button id="result" onclick="updateMinMax()">ENTER</button>
+
+  </div>
+  
+  <script>
+    let currentScore = "";
+    let minScore = Infinity;
+    let maxScore = -Infinity;
+
+    function addToScore(number) {
+      currentScore += number;
+      document.getElementById("scoreBox").value = currentScore;
+    }
+
+    function updateMinMax() {
+      if (currentScore !== "") {
+        const score = parseInt(currentScore);
+        if (score < minScore) {
+          minScore = score;
+          document.getElementById("minBox").value = minScore;
+        }
+        if (score > maxScore) {
+          maxScore = score;
+          document.getElementById("maxBox").value = maxScore;
+        }
+
+        currentScore = "";
+        document.getElementById("scoreBox").value = "";
+      }
+    }
+  </script>
+</body>
+</html>
